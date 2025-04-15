@@ -62,7 +62,7 @@
 - Monitoring pipeline: Theo dõi pipeline, log, resource Jenkins agent.
 - Scaling: Có thể tích hợp Jenkins agent trên k8s để build, test, deploy song song.
 
-## 6. Ý tưởng sáng tạo & điểm cộng
+## 6. Ý tưởng mở rộng
 - Autoscaling Jenkins agent trên k8s khi build nhiều job.
 - Canary deployment: Deploy model mới cho 1 replica, kiểm thử trước khi rollout toàn bộ.
 - Cost dashboard: Theo dõi chi phí cloud, resource usage.
@@ -77,4 +77,4 @@
 - [ ] Jaeger tracing hoạt động, visualize flow.
 - [ ] K8s deploy API 3 replicas, Prometheus + Grafana bằng Helm.
 - [ ] Báo cáo, dashboard, changelog, tài liệu đầy đủ.
-- [ ] (Bonus) Cloud, autoscaling, model registry, cost monitoring.
+- [ ] Cloud, autoscaling, model registry, cost monitoring.
