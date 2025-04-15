@@ -1,25 +1,29 @@
+**This repository serves as a brainstorming space that provides useful documentation and MLOps tool templates to support transitioning AI models from research to production.
+
+The ideas and prototypes here will later be implemented in a separate repository for realistic deployment.**
+
 # Qwen Coding Use Case - MLOps Project
 
-## Tổng quan
-Đồ án MLOps triển khai hệ thống Coding Multiple Choice Question Answering sử dụng mô hình Qwen2.5-Coder-1.5B-Instruct, tích hợp FastAPI, Docker Compose, Prometheus, Grafana, Jaeger, Jenkins CI/CD, Kubernetes, Helm, cloud-ready.
+## Overview
+This MLOps project implements a Coding Multiple Choice Question Answering system using the Qwen2.5-Coder-1.5B-Instruct model, integrated with FastAPI, Docker Compose, Prometheus, Grafana, Jaeger, Jenkins CI/CD, Kubernetes, Helm, and cloud-ready infrastructure.
 
-## Cấu trúc thư mục
+## Directory Structure
 ```
 qwen_coding_use_case/
-├── src/                  # Source code FastAPI, model inference, metrics, tracing
+├── src/                  # FastAPI source code, model inference, metrics, tracing
 │   ├── main.py
 │   ├── model.py
 │   ├── metrics.py
 │   └── tracing.py
-├── streamlit_ui/         # (Optional) Streamlit UI giữ lại nếu cần
+├── streamlit_ui/         # (Optional) Streamlit UI retained if needed
 │   └── app.py
-├── tests/                # Unit test, API test
+├── tests/                # Unit tests, API tests
 │   └── test_api.py
 ├── requirements.txt      # Python dependencies
 ├── Dockerfile            # Build FastAPI service
 ├── docker-compose.yml    # Compose all services: api, ui, prometheus, grafana, jaeger
 ├── Jenkinsfile           # CI/CD pipeline
-├── k8s/                  # K8s manifest, Helm chart
+├── k8s/                  # K8s manifests, Helm chart
 │   ├── deployment.yaml
 │   ├── service.yaml
 │   ├── prometheus.yaml
@@ -28,145 +32,145 @@ qwen_coding_use_case/
 ├── monitoring/           # Prometheus, Grafana, Jaeger config
 │   ├── prometheus.yml
 │   └── grafana_dashboard.json
-├── docs/                 # Tài liệu, changelog, hướng dẫn sử dụng
+├── docs/                 # Documentation, changelog, usage guides
 │   ├── README.md
 │   ├── changelog.md
 │   └── troubleshooting.md
-└── .pre-commit-config.yaml # Lint, format, security check
+└── .pre-commit-config.yaml # Lint, format, security checks
 ```
 
-## Hướng dẫn sử dụng
-- Xem docs/README.md để biết cách chạy local, CI/CD, deploy k8s, cloud.
-- Xem Jenkinsfile để biết pipeline tự động hóa.
-- Xem monitoring/ để cấu hình Prometheus, Grafana, Jaeger.
+## Usage Instructions
+- See docs/README.md for local execution, CI/CD, k8s deployment, cloud deployment.
+- See Jenkinsfile for automated pipeline configuration.
+- See monitoring/ for Prometheus, Grafana, Jaeger configuration.
 
-## Ghi chú
-- Mỗi file sẽ có hướng dẫn chi tiết, code mẫu, dễ mở rộng.
-- Đáp ứng đầy đủ các tiêu chí MLOps, monitoring, scaling, security, cloud-ready.
+## Notes
+- Each file contains detailed instructions, sample code, and is easily extensible.
+- Satisfies all MLOps criteria: monitoring, scaling, security, cloud-readiness.
 
 <!-- ---
 # Qwen-Coding-ideation-to-production-mlops -->
-# Phân tích chiến lược MLOps cho dự án Coding Multiple Choice QA
+# MLOps Strategy Analysis for Coding Multiple Choice QA Project
 
-## 1. Phân tích tổng thể & mục tiêu đồ án
-- **Mục tiêu:** Biến ứng dụng Streamlit (đã có model Qwen2.5-Coder-1.5B-Instruct) thành một hệ thống MLOps production-ready, đáp ứng các tiêu chí về CI/CD, monitoring, scaling, observability, automation.
-- **Yêu cầu:** Tích hợp các công nghệ: Python, FastAPI, Docker Compose, Prometheus, Grafana, Jaeger, Jenkins, Kubernetes, Helm, Cloud.
+## 1. Overall Analysis & Project Objectives
+- **Objective:** Transform a Streamlit application (with existing Qwen2.5-Coder-1.5B-Instruct model) into a production-ready MLOps system that meets criteria for CI/CD, monitoring, scaling, observability, and automation.
+- **Requirements:** Integrate technologies: Python, FastAPI, Docker Compose, Prometheus, Grafana, Jaeger, Jenkins, Kubernetes, Helm, Cloud.
 
-## 2. Chiến lược triển khai & roadmap
+## 2. Implementation Strategy & Roadmap
 
-### Giai đoạn 1: Chuẩn hóa codebase & API hóa
-- Refactor code, tách phần inference thành FastAPI service (giữ lại Streamlit UI nếu cần).
-- Đảm bảo API trả về kết quả đúng, có test case kiểm thử.
+### Phase 1: Codebase Standardization & API Development
+- Refactor code, extract inference logic into FastAPI service (retain Streamlit UI if needed).
+- Ensure API returns correct results, with comprehensive test cases.
 
-### Giai đoạn 2: Đóng gói & CI/CD
-- Viết Dockerfile cho FastAPI, Streamlit, model.
-- Tạo docker-compose.yml để chạy local nhiều service (API, UI, Prometheus, Grafana, Jaeger).
-- Viết Jenkinsfile cho CI/CD: tự động build, test, lint, build image, push image, deploy (local/k8s).
+### Phase 2: Packaging & CI/CD
+- Write Dockerfile for FastAPI, Streamlit, model components.
+- Create docker-compose.yml for local multi-service operation (API, UI, Prometheus, Grafana, Jaeger).
+- Develop Jenkinsfile for CI/CD: automated build, test, lint, image build, image push, deployment (local/k8s).
 
-### Giai đoạn 3: Monitoring & Observability
-- Tích hợp Prometheus (metrics FastAPI, resource usage).
-- Tích hợp Grafana (dashboard theo dõi CPU, RAM, request, latency).
-- Tích hợp Jaeger + OpenTelemetry (tracing request từ UI → API → model).
+### Phase 3: Monitoring & Observability
+- Implement Prometheus integration (FastAPI metrics, resource usage).
+- Configure Grafana (dashboards for CPU, RAM, request, latency monitoring).
+- Integrate Jaeger + OpenTelemetry (request tracing from UI → API → model).
 
-### Giai đoạn 4: Scaling & Cloud Native
-- Viết manifest Kubernetes (hoặc Helm chart) để deploy API với 3 replicas.
-- Deploy Prometheus + Grafana trên k8s bằng Helm.
-- Deploy lên cloud (GCP, AWS, Azure, hoặc cloud free-tier).
+### Phase 4: Scaling & Cloud Native Architecture
+- Create Kubernetes manifests (or Helm charts) to deploy API with 3 replicas.
+- Deploy Prometheus + Grafana on k8s using Helm.
+- Deploy to cloud platform (GCP, AWS, Azure, or free-tier cloud).
 
-### Giai đoạn 5: Báo cáo, sáng tạo, hoàn thiện
-- Viết tài liệu, dashboard, changelog, hướng dẫn sử dụng, troubleshooting.
-- Tích hợp thêm cloud function, autoscaling, cost monitoring, hoặc bất kỳ ý tưởng sáng tạo nào.
+### Phase 5: Reporting, Innovation, Refinement
+- Create documentation, dashboards, changelog, usage guides, troubleshooting procedures.
+- Integrate additional cloud functions, autoscaling, cost monitoring, or any innovative enhancements.
 
-## 3. Thời gian biểu gợi ý (2-3 tuần)
+## 3. Suggested Timeline (2-3 weeks)
 
-| Tuần | Công việc chính |
+| Week | Primary Tasks |
 |------|----------------|
-| 1 | Refactor code, FastAPI, test, Dockerfile, docker-compose, Jenkinsfile, CI/CD local |
-| 2 | Prometheus, Grafana, Jaeger, OpenTelemetry, hoàn thiện monitoring, logging, notification |
-| 3 | Kubernetes, Helm, scaling, cloud, báo cáo, sáng tạo, polish, demo |
+| 1 | Code refactoring, FastAPI, testing, Dockerfile, docker-compose, Jenkinsfile, local CI/CD |
+| 2 | Prometheus, Grafana, Jaeger, OpenTelemetry, monitoring refinement, logging, notifications |
+| 3 | Kubernetes, Helm, scaling, cloud deployment, reporting, innovation, refinement, demonstration |
 
-## 4. Công nghệ & tài nguyên gợi ý
+## 4. Suggested Technologies & Resources
 - **Python:** FastAPI, Streamlit, pytest, flake8, black, isort, pre-commit.
-- **Docker Compose:** Quản lý multi-service local.
-- **Jenkins:** CI/CD (build, test, lint, build image, push image, deploy).
-- **Prometheus:** metrics FastAPI (dùng prometheus_fastapi_instrumentator), resource node_exporter.
-- **Grafana:** Dashboard resource, request, latency.
-- **Jaeger + OpenTelemetry:** Tracing request, visualize flow.
-- **Kubernetes + Helm:** Deploy API 3 replicas, Prometheus, Grafana.
+- **Docker Compose:** Local multi-service management.
+- **Jenkins:** CI/CD (build, test, lint, image build, image push, deployment).
+- **Prometheus:** FastAPI metrics (using prometheus_fastapi_instrumentator), resource node_exporter.
+- **Grafana:** Resource, request, latency dashboards.
+- **Jaeger + OpenTelemetry:** Request tracing, flow visualization.
+- **Kubernetes + Helm:** 3-replica API deployment, Prometheus, Grafana.
 - **Cloud:** GCP/AWS/Azure/Oracle Cloud Free Tier.
-- **GitHub/GitLab:** Quản lý code, trigger Jenkins.
+- **GitHub/GitLab:** Code management, Jenkins triggers.
 
-## 5. Phân tích chuyên sâu: Jenkins trong đồ án này
+## 5. In-Depth Analysis: Jenkins in this Project
 ### CI/CD Pipeline:
-- Lint, test, coverage: Đảm bảo code sạch, không bug trước khi build.
-- Build Docker image: Tự động build image cho API, UI, model.
-- Push image: Đẩy image lên DockerHub/GCR/ECR.
-- Deploy: Tự động deploy lên local (docker-compose) hoặc k8s (kubectl/helm).
-- Notification: Gửi email/Slack khi build thành công/thất bại.
-- Artifact: Lưu log, model, metrics, changelog.
-- Trigger: Tự động chạy pipeline khi có commit mới (webhook).
-- Test automation: Tích hợp test API, test UI, test model.
-- Security: Quản lý secret (API key, token) qua Jenkins Credential Store.
-- Monitoring pipeline: Theo dõi pipeline, log, resource Jenkins agent.
-- Scaling: Có thể tích hợp Jenkins agent trên k8s để build, test, deploy song song.
+- Lint, test, coverage: Ensure clean, bug-free code before building.
+- Docker image building: Automated image creation for API, UI, model.
+- Image pushing: Push images to DockerHub/GCR/ECR.
+- Deployment: Automated deployment to local (docker-compose) or k8s (kubectl/helm).
+- Notification: Email/Slack alerts for build success/failure.
+- Artifact storage: Log, model, metrics, changelog preservation.
+- Trigger mechanisms: Automated pipeline execution on new commits (webhook).
+- Test automation: API testing, UI testing, model testing integration.
+- Security: Secret management (API keys, tokens) via Jenkins Credential Store.
+- Pipeline monitoring: Pipeline tracking, logging, Jenkins agent resource monitoring.
+- Scaling: Potential integration with Jenkins agents on k8s for parallel build, test, deployment.
 
-## 6. Ý tưởng mở rộng
-- Autoscaling Jenkins agent trên k8s khi build nhiều job.
-- Canary deployment: Deploy model mới cho 1 replica, kiểm thử trước khi rollout toàn bộ.
-- Cost dashboard: Theo dõi chi phí cloud, resource usage.
-- Model registry: Tích hợp MLflow/DVC cho versioning model.
-- Observability: Full tracing từ UI → API → model → DB (nếu có).
+## 6. Extension Ideas
+- Autoscaling Jenkins agents on k8s for multiple job builds.
+- Canary deployment: Deploy new model to 1 replica, test before complete rollout.
+- Cost dashboard: Cloud cost monitoring, resource usage tracking.
+- Model registry: MLflow/DVC integration for model versioning.
+- Observability: Complete tracing from UI → API → model → DB (if applicable).
 
-## 7. Checklist hoàn thành đồ án
-- [ ] FastAPI API trả về đúng kết quả, có test case.
-- [ ] Docker Compose chạy đủ các service (API, UI, Prometheus, Grafana, Jaeger).
-- [ ] Jenkinsfile CI/CD hoàn chỉnh, tự động build, test, deploy.
-- [ ] Prometheus + Grafana theo dõi resource, request, latency.
-- [ ] Jaeger tracing hoạt động, visualize flow.
-- [ ] K8s deploy API 3 replicas, Prometheus + Grafana bằng Helm.
-- [ ] Báo cáo, dashboard, changelog, tài liệu đầy đủ.
-- [ ] Cloud, autoscaling, model registry, cost monitoring.
+## 7. Project Completion Checklist
+- [ ] FastAPI correctly returns results, with comprehensive test cases.
+- [ ] Docker Compose runs all required services (API, UI, Prometheus, Grafana, Jaeger).
+- [ ] Complete Jenkinsfile CI/CD, automated build, test, deployment.
+- [ ] Prometheus + Grafana monitor resources, requests, latency.
+- [ ] Jaeger tracing operates correctly, visualizes flow.
+- [ ] K8s deployment of $n$ API replicas, Prometheus + Grafana via Helm.
+- [ ] Complete reporting, dashboards, changelog, documentation.
+- [ ] Cloud deployment, autoscaling, model registry, cost monitoring.
 
-# Brainstorming & Phác thảo chiến lược đồ án MLOps: Qwen Coding Use Case
+# Brainstorming & MLOps Project Strategy Draft: Qwen Coding Use Case
 
-## 1. Mục tiêu tổng thể
-- Biến ứng dụng Coding Multiple Choice QA (Qwen2.5-Coder-1.5B-Instruct) thành hệ thống MLOps production-ready.
-- Tích hợp: FastAPI, Docker Compose, Prometheus, Grafana, Jaeger, Jenkins, Kubernetes, Helm, Cloud.
+## 1. Overall Objective
+- Transform Coding Multiple Choice QA application (Qwen2.5-Coder-1.5B-Instruct) into production-ready MLOps system.
+- Integration targets: FastAPI, Docker Compose, Prometheus, Grafana, Jaeger, Jenkins, Kubernetes, Helm, Cloud.
 
-## 2. Chiến lược triển khai
-### Giai đoạn 1: Chuẩn hóa codebase & API hóa
-- Refactor code, tách inference thành FastAPI service.
-- Đảm bảo API trả về đúng, có test case.
+## 2. Implementation Strategy
+### Phase 1: Codebase Standardization & API Development
+- Refactor code, extract inference into FastAPI service.
+- Ensure API correctness, develop test cases.
 
-### Giai đoạn 2: Đóng gói & CI/CD
-- Viết Dockerfile, docker-compose cho API, UI, monitoring.
-- Viết Jenkinsfile: build, test, lint, build image, push image, deploy.
+### Phase 2: Packaging & CI/CD
+- Create Dockerfile, docker-compose for API, UI, monitoring.
+- Develop Jenkinsfile: build, test, lint, image build/push, deployment.
 
-### Giai đoạn 3: Monitoring & Observability
-- Tích hợp Prometheus, Grafana, Jaeger, OpenTelemetry.
+### Phase 3: Monitoring & Observability
+- Implement Prometheus, Grafana, Jaeger, OpenTelemetry.
 
-### Giai đoạn 4: Scaling & Cloud Native
-- Viết manifest K8s/Helm, deploy API 3 replicas, monitoring trên k8s.
-- Deploy cloud.
+### Phase 4: Scaling & Cloud Native Architecture
+- Create K8s/Helm manifests, deploy 3-replica API, monitoring on k8s.
+- Deploy to cloud.
 
-### Giai đoạn 5: Báo cáo, sáng tạo, polish
-- Viết tài liệu, dashboard, changelog, hướng dẫn sử dụng, troubleshooting.
+### Phase 5: Reporting, Innovation, Refinement
+- Create documentation, dashboards, changelog, usage guides, troubleshooting procedures.
 
-## 3. Công nghệ & tài nguyên
+## 3. Technologies & Resources
 - Python, FastAPI, Streamlit, pytest, flake8, Docker Compose, Jenkins, Prometheus, Grafana, Jaeger, K8s, Helm, Cloud, GitHub/GitLab.
 
-## 4. Jenkins trong đồ án
-- CI/CD: lint, test, build image, push, deploy, notification, artifact, security, monitoring pipeline, scaling agent.
+## 4. Jenkins in this Project
+- CI/CD: lint, test, image build/push, deployment, notification, artifacts, security, pipeline monitoring, agent scaling.
 
-## 5. Checklist hoàn thành
-- [ ] FastAPI API đúng, test case đủ
-- [ ] Docker Compose đủ service
-- [ ] Jenkinsfile CI/CD hoàn chỉnh
-- [ ] Prometheus + Grafana + Jaeger hoạt động
-- [ ] K8s deploy 3 replicas, monitoring Helm
-- [ ] Báo cáo, dashboard, changelog, tài liệu
-- [ ] Cloud, autoscaling, model registry
+## 5. Completion Checklist
+- [ ] Correct FastAPI API, sufficient test cases
+- [ ] Complete Docker Compose services
+- [ ] Comprehensive Jenkinsfile CI/CD
+- [ ] Functional Prometheus + Grafana + Jaeger
+- [ ] $n$-replica K8s deployment, Helm monitoring
+- [ ] Reports, dashboards, changelog, documentation
+- [ ] Cloud deployment, autoscaling, model registry
 
 ---
 
-*Bản phác thảo này là kim chỉ nam cho toàn bộ quá trình triển khai, giúp bám sát mục tiêu, công nghệ, checklist và chiến lược thực hiện đồ án MLOps hiện đại.*
+*This draft serves as a guideline for the entire implementation process, ensuring alignment with objectives, technologies, checklist items, and strategic implementation of this modern MLOps project.*
