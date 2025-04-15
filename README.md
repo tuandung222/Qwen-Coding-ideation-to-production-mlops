@@ -71,11 +71,11 @@ qwen_coding_use_case/
 ### Giai đoạn 4: Scaling & Cloud Native
 - Viết manifest Kubernetes (hoặc Helm chart) để deploy API với 3 replicas.
 - Deploy Prometheus + Grafana trên k8s bằng Helm.
-- (Bonus) Deploy lên cloud (GCP, AWS, Azure, hoặc cloud free-tier).
+- Deploy lên cloud (GCP, AWS, Azure, hoặc cloud free-tier).
 
 ### Giai đoạn 5: Báo cáo, sáng tạo, hoàn thiện
 - Viết tài liệu, dashboard, changelog, hướng dẫn sử dụng, troubleshooting.
-- (Bonus) Tích hợp thêm cloud function, autoscaling, cost monitoring, hoặc bất kỳ ý tưởng sáng tạo nào.
+- Tích hợp thêm cloud function, autoscaling, cost monitoring, hoặc bất kỳ ý tưởng sáng tạo nào.
 
 ## 3. Thời gian biểu gợi ý (2-3 tuần)
 
@@ -93,7 +93,7 @@ qwen_coding_use_case/
 - **Grafana:** Dashboard resource, request, latency.
 - **Jaeger + OpenTelemetry:** Tracing request, visualize flow.
 - **Kubernetes + Helm:** Deploy API 3 replicas, Prometheus, Grafana.
-- **Cloud:** GCP/AWS/Azure/Oracle Cloud Free Tier (bonus).
+- **Cloud:** GCP/AWS/Azure/Oracle Cloud Free Tier.
 - **GitHub/GitLab:** Quản lý code, trigger Jenkins.
 
 ## 5. Phân tích chuyên sâu: Jenkins trong đồ án này
@@ -147,7 +147,7 @@ qwen_coding_use_case/
 
 ### Giai đoạn 4: Scaling & Cloud Native
 - Viết manifest K8s/Helm, deploy API 3 replicas, monitoring trên k8s.
-- (Bonus) Deploy cloud.
+- Deploy cloud.
 
 ### Giai đoạn 5: Báo cáo, sáng tạo, polish
 - Viết tài liệu, dashboard, changelog, hướng dẫn sử dụng, troubleshooting.
@@ -165,7 +165,7 @@ qwen_coding_use_case/
 - [ ] Prometheus + Grafana + Jaeger hoạt động
 - [ ] K8s deploy 3 replicas, monitoring Helm
 - [ ] Báo cáo, dashboard, changelog, tài liệu
-- [ ] (Bonus) Cloud, autoscaling, model registry
+- [ ] Cloud, autoscaling, model registry
 
 ---
 

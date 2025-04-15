@@ -23,11 +23,11 @@
 ### Giai đoạn 4: Scaling & Cloud Native
 - Viết manifest Kubernetes (hoặc Helm chart) để deploy API với 3 replicas.
 - Deploy Prometheus + Grafana trên k8s bằng Helm.
-- (Bonus) Deploy lên cloud (GCP, AWS, Azure, hoặc cloud free-tier).
+- Deploy lên cloud (GCP, AWS, Azure, hoặc cloud free-tier).
 
 ### Giai đoạn 5: Báo cáo, sáng tạo, hoàn thiện
 - Viết tài liệu, dashboard, changelog, hướng dẫn sử dụng, troubleshooting.
-- (Bonus) Tích hợp thêm cloud function, autoscaling, cost monitoring, hoặc bất kỳ ý tưởng sáng tạo nào.
+- Tích hợp thêm cloud function, autoscaling, cost monitoring, hoặc bất kỳ ý tưởng sáng tạo nào.
 
 ## 3. Thời gian biểu gợi ý (2-3 tuần)
 

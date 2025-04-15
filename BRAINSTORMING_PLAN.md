@@ -18,7 +18,7 @@
 
 ### Giai đoạn 4: Scaling & Cloud Native
 - Viết manifest K8s/Helm, deploy API 3 replicas, monitoring trên k8s.
-- (Bonus) Deploy cloud.
+- Deploy cloud.
 
 ### Giai đoạn 5: Báo cáo, sáng tạo, polish
 - Viết tài liệu, dashboard, changelog, hướng dẫn sử dụng, troubleshooting.
@@ -36,7 +36,7 @@
 - [ ] Prometheus + Grafana + Jaeger hoạt động
 - [ ] K8s deploy 3 replicas, monitoring Helm
 - [ ] Báo cáo, dashboard, changelog, tài liệu
-- [ ] (Bonus) Cloud, autoscaling, model registry
+- [ ] Cloud, autoscaling, model registry
 
 ---
 
