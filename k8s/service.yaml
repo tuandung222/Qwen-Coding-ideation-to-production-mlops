@@ -1,0 +1,13 @@
+# k8s/service.yaml - Expose API service
+apiVersion: v1
+kind: Service
+metadata:
+  name: qwen-coding-api
+spec:
+  selector:
+    app: qwen-coding-api
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+  type: LoadBalancer

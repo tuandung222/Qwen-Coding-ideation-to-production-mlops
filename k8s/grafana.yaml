@@ -1,0 +1,14 @@
+# k8s/grafana.yaml - Grafana Helm release (mẫu)
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  chart: grafana/grafana
+  version: "7.3.9"
+  repo: https://grafana.github.io/helm-charts
+  valuesContent: |
+    service:
+      type: LoadBalancer
+    adminPassword: admin

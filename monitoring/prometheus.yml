@@ -1,0 +1,13 @@
+# prometheus.yml - Prometheus config scrape FastAPI metrics
+# monitoring/prometheus.yml
+
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'qwen-api'
+    static_configs:
+      - targets: ['api:8000']
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']

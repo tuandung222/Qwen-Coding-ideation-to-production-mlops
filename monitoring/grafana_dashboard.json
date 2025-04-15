@@ -1,0 +1,39 @@
+{
+  "dashboard": {
+    "title": "Qwen Coding API Monitoring",
+    "panels": [
+      {
+        "type": "graph",
+        "title": "API Request Rate",
+        "targets": [
+          {"expr": "rate(http_server_requests_total[1m])"}
+        ],
+        "datasource": "Prometheus"
+      },
+      {
+        "type": "graph",
+        "title": "API Latency (ms)",
+        "targets": [
+          {"expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le)) * 1000"}
+        ],
+        "datasource": "Prometheus"
+      },
+      {
+        "type": "graph",
+        "title": "CPU Usage",
+        "targets": [
+          {"expr": "process_cpu_seconds_total"}
+        ],
+        "datasource": "Prometheus"
+      },
+      {
+        "type": "graph",
+        "title": "Memory Usage",
+        "targets": [
+          {"expr": "process_resident_memory_bytes"}
+        ],
+        "datasource": "Prometheus"
+      }
+    ]
+  }
+}

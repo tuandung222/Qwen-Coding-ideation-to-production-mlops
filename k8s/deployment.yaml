@@ -1,0 +1,25 @@
+# k8s/deployment.yaml - Triển khai 3 replicas cho API
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qwen-coding-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: qwen-coding-api
+  template:
+    metadata:
+      labels:
+        app: qwen-coding-api
+    spec:
+      containers:
+        - name: api
+          image: your-dockerhub-username/qwen-coding-api:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: JAEGER_AGENT_HOST
+              value: "jaeger"
+            - name: JAEGER_AGENT_PORT
+              value: "6831"

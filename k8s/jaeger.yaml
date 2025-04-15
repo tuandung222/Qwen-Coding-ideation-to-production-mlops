@@ -1,0 +1,19 @@
+# k8s/jaeger.yaml - Jaeger Helm release (mẫu)
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: jaeger
+  namespace: monitoring
+spec:
+  chart: jaegertracing/jaeger
+  version: "0.71.0"
+  repo: https://jaegertracing.github.io/helm-charts
+  valuesContent: |
+    agent:
+      enabled: true
+    collector:
+      enabled: true
+    query:
+      enabled: true
+    service:
+      type: LoadBalancer

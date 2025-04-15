@@ -1,0 +1,14 @@
+# k8s/prometheus.yaml - Prometheus Helm release (mẫu)
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: prometheus
+  namespace: monitoring
+spec:
+  chart: prometheus-community/prometheus
+  version: "25.21.0"
+  repo: https://prometheus-community.github.io/helm-charts
+  valuesContent: |
+    server:
+      service:
+        type: LoadBalancer
