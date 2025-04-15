@@ -1,6 +1,8 @@
-**This repository serves as a brainstorming space that provides useful documentation and MLOps tool templates to support transitioning AI models from research to production.
-
-The ideas and prototypes here will later be implemented in a separate repository for realistic deployment.**
+> ### 🚀 **Important Note** 🚀
+>
+> **This repository serves as a brainstorming space that provides useful documentation and MLOps tool templates to support transitioning AI models from research to production.**
+>
+> **The ideas and prototypes here will later be implemented in a separate repository for realistic deployment.**
 
 # Qwen Coding Use Case - MLOps Project
 
